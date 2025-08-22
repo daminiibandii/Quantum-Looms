@@ -1,0 +1,609 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Handloom Making Process - Quantum Looms</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap/dist/css/bootstrap.min.css">
+  <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Amazon Ember', Arial, sans-serif;
+            background-color: #f3f3f3;
+            color: #333;
+        }
+
+        /* Header Styles */
+        .header {
+            background: linear-gradient(to bottom, #232f3e, #37475a);
+            color: white;
+            padding: 10px 0;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .header-top {
+            background: #131921;
+            padding: 8px 0;
+        }
+
+        .header-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 20px;
+        }
+
+        .logo {
+            color: #ff9900;
+            font-size: 28px;
+            font-weight: bold;
+            text-decoration: none;
+        }
+
+        .search-bar {
+            flex: 1;
+            max-width: 600px;
+            margin: 0 20px;
+            display: flex;
+        }
+
+        .search-input {
+            flex: 1;
+            padding: 12px;
+            border: none;
+            border-radius: 4px 0 0 4px;
+            font-size: 16px;
+        }
+
+        .search-button {
+            background: #ff9900;
+            border: none;
+            padding: 12px 20px;
+            border-radius: 0 4px 4px 0;
+            cursor: pointer;
+            color: #333;
+            font-weight: bold;
+        }
+
+        .search-button:hover {
+            background: #e68a00;
+        }
+
+        .header-right {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .header-link {
+            color: white;
+            text-decoration: none;
+            font-size: 14px;
+        }
+
+        .header-link:hover {
+            color: #ff9900;
+        }
+
+        .cart-icon {
+            position: relative;
+            color: white;
+            font-size: 20px;
+            text-decoration: none;
+        }
+
+        .cart-count {
+            position: absolute;
+            top: -8px;
+            right: -8px;
+            background: #ff9900;
+            color: #333;
+            border-radius: 50%;
+            width: 20px;
+            height: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 12px;
+            font-weight: bold;
+        }
+
+        /* Navigation */
+        .nav {
+            background: #232f3e;
+            padding: 8px 0;
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            align-items: center;
+            gap: 30px;
+            padding: 0 20px;
+        }
+
+        .nav-link {
+            color: white;
+            text-decoration: none;
+            font-size: 14px;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .nav-link:hover {
+            color: #ff9900;
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 60px 0;
+            text-align: center;
+        }
+
+        .hero-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .hero h1 {
+            font-size: 48px;
+            margin-bottom: 20px;
+        }
+
+        .hero p {
+            font-size: 20px;
+            margin-bottom: 30px;
+        }
+
+        .cta-button {
+            background: #ff9900;
+            color: #333;
+            padding: 15px 30px;
+            border: none;
+            border-radius: 4px;
+            font-size: 18px;
+            font-weight: bold;
+            cursor: pointer;
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        .cta-button:hover {
+            background: #e68a00;
+        }
+
+        /* Main Content */
+        .main {
+            max-width: 1200px;
+            margin: 40px auto;
+            padding: 0 20px;
+        }
+
+        .section-title {
+            font-size: 28px;
+            margin-bottom: 30px;
+            color: #333;
+            text-align: center;
+        }
+
+        /* Video Section */
+        .video-section {
+            background: white;
+            border-radius: 12px;
+            padding: 40px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            margin-bottom: 40px;
+            border: 1px solid #f0f0f0;
+        }
+
+        .video-container {
+            position: relative;
+            width: 100%;
+            max-width: 800px;
+            margin: 0 auto 30px;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+        }
+
+        .video-container video {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        .video-placeholder {
+            width: 100%;
+            height: 450px;
+            background: linear-gradient(45deg, #f0f0f0, #e0e0e0);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #666;
+            font-size: 18px;
+            position: relative;
+        }
+
+        .play-button {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 80px;
+            height: 80px;
+            background: rgba(255, 153, 0, 0.9);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border: none;
+            color: white;
+            font-size: 24px;
+        }
+
+        .play-button:hover {
+            background: rgba(255, 153, 0, 1);
+            transform: translate(-50%, -50%) scale(1.1);
+        }
+
+        .video-description {
+            text-align: center;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .video-description h3 {
+            color: #333;
+            font-size: 24px;
+            margin-bottom: 15px;
+        }
+
+        .video-description p {
+            color: #666;
+            font-size: 16px;
+            line-height: 1.6;
+            margin-bottom: 20px;
+        }
+
+        /* Process Steps */
+        .process-steps {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+        }
+
+        .step-card {
+            background: white;
+            border-radius: 12px;
+            padding: 25px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            border: 1px solid #f0f0f0;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .step-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+        }
+
+        .step-number {
+            background: #ff9900;
+            color: #333;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            font-size: 18px;
+            margin-bottom: 15px;
+        }
+
+        .step-title {
+            font-size: 18px;
+            font-weight: bold;
+            color: #333;
+            margin-bottom: 10px;
+        }
+
+        .step-description {
+            color: #666;
+            font-size: 14px;
+            line-height: 1.5;
+        }
+
+        /* Footer */
+        .footer {
+            background: #232f3e;
+            color: white;
+            padding: 40px 0 20px;
+            margin-top: 60px;
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+            padding: 0 20px;
+        }
+
+        .footer-section h3 {
+            margin-bottom: 20px;
+            color: #ff9900;
+        }
+
+        .footer-section ul {
+            list-style: none;
+        }
+
+        .footer-section ul li {
+            margin-bottom: 10px;
+        }
+
+        .footer-section ul li a {
+            color: #ccc;
+            text-decoration: none;
+        }
+
+        .footer-section ul li a:hover {
+            color: #ff9900;
+        }
+
+        .footer-bottom {
+            border-top: 1px solid #37475a;
+            margin-top: 30px;
+            padding-top: 20px;
+            text-align: center;
+            color: #ccc;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .header-container {
+                flex-direction: column;
+                gap: 15px;
+            }
+
+            .search-bar {
+                margin: 15px 0;
+                max-width: 100%;
+            }
+
+            .nav-container {
+                flex-wrap: wrap;
+                gap: 15px;
+            }
+
+            .hero h1 {
+                font-size: 32px;
+            }
+
+            .hero p {
+                font-size: 16px;
+            }
+
+            .process-steps {
+                grid-template-columns: 1fr;
+            }
+
+            .video-container {
+                margin-bottom: 20px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .video-section {
+                padding: 20px;
+            }
+
+            .footer-content {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
+        }
+  </style>
+</head>
+<body>
+<!-- Header -->
+<header class="header">
+    <div class="header-top">
+        <div class="header-container">
+            <a href="#" class="logo">Quantum Looms</a>
+            <div class="search-bar">
+                <input type="text" class="search-input" placeholder="Search for videos and tutorials...">
+                <button class="search-button">Search</button>
+            </div>
+            <div class="header-right">
+                <a href="#" class="header-link">Sign In</a>
+                <a href="#" class="header-link">Register</a>
+                <a href="#" class="cart-icon">🛒<span class="cart-count">0</span></a>
+            </div>
+        </div>
+    </div>
+    <nav class="nav">
+        <div class="nav-container">
+            <a href="#" class="nav-link">🏠 Home</a>
+            <a href="#" class="nav-link">🎥 Videos</a>
+            <a href="#" class="nav-link">👨‍🎨 Artists</a>
+            <a href="#" class="nav-link">🛍️ Products</a>
+            <a href="#" class="nav-link">📞 Contact</a>
+        </div>
+    </nav>
+</header>
+
+<!-- Hero Section -->
+<section class="hero">
+    <div class="hero-content">
+        <h1>Discover the Art of Handloom Weaving</h1>
+        <p>Watch master artisans create beautiful handloom textiles through traditional techniques</p>
+        <a href="#video-section" class="cta-button">Watch Process</a>
+    </div>
+</section>
+
+<!-- Main Content -->
+<main class="main">
+    <section id="video-section" class="video-section">
+        <h2 class="section-title">Handloom Making Process</h2>
+        
+        <div class="video-container">
+            <div class="video-placeholder">
+                <button class="play-button" onclick="playVideo()">▶️</button>
+                <p>Click to watch the handloom weaving process</p>
+            </div>
+            <!-- Video will be loaded here -->
+            <video id="handloom-video" controls style="display: none;">
+                <source src="WhatsApp Video 2025-08-23 at 02.12.51_0820817c.mp4" type="video/mp4">
+                <source src="WhatsApp Video 2025-08-23 at 02.12.51_0820817c.mp4" type="video/webm">
+                Your browser does not support the video tag.
+            </video>
+        </div>
+        
+        <div class="video-description">
+            <h3>Traditional Handloom Weaving</h3>
+            <p>Experience the mesmerizing process of handloom weaving as skilled artisans transform raw materials into exquisite textiles. This video showcases the complete journey from yarn preparation to the final woven fabric, highlighting the precision, patience, and craftsmanship involved in this ancient art form.</p>
+        </div>
+    </section>
+
+    <!-- Process Steps -->
+    <section class="process-steps">
+        <div class="step-card">
+            <div class="step-number">1</div>
+            <h4 class="step-title">Yarn Preparation</h4>
+            <p class="step-description">Raw cotton or silk is cleaned, carded, and spun into fine yarns. The yarns are then dyed using natural or synthetic dyes to achieve the desired colors.</p>
+        </div>
+        
+        <div class="step-card">
+            <div class="step-number">2</div>
+            <h4 class="step-title">Warp Setting</h4>
+            <p class="step-description">The warp threads are carefully arranged and mounted on the loom. This involves precise tensioning and alignment to ensure uniform weaving.</p>
+        </div>
+        
+        <div class="step-card">
+            <div class="step-number">3</div>
+            <h4 class="step-title">Weaving Process</h4>
+            <p class="step-description">The weaver operates the loom, passing the weft thread through the warp threads in intricate patterns. This requires skill and concentration.</p>
+        </div>
+        
+        <div class="step-card">
+            <div class="step-number">4</div>
+            <h4 class="step-title">Pattern Creation</h4>
+            <p class="step-description">Complex patterns are created by carefully controlling the warp and weft threads. Traditional motifs and designs are woven into the fabric.</p>
+        </div>
+        
+        <div class="step-card">
+            <div class="step-number">5</div>
+            <h4 class="step-title">Finishing</h4>
+            <p class="step-description">The woven fabric is removed from the loom and undergoes finishing processes including washing, starching, and ironing.</p>
+        </div>
+        
+        <div class="step-card">
+            <div class="step-number">6</div>
+            <h4 class="step-title">Quality Check</h4>
+            <p class="step-description">Each piece is carefully inspected for quality, ensuring the patterns are perfect and the fabric meets the highest standards.</p>
+        </div>
+    </section>
+</main>
+
+<!-- Footer -->
+<footer class="footer">
+    <div class="footer-content">
+        <div class="footer-section">
+            <h3>About Quantum Looms</h3>
+            <ul>
+                <li><a href="#">About Us</a></li>
+                <li><a href="#">Our Mission</a></li>
+                <li><a href="#">Team</a></li>
+                <li><a href="#">Careers</a></li>
+            </ul>
+        </div>
+        <div class="footer-section">
+            <h3>Learning</h3>
+            <ul>
+                <li><a href="#">Video Tutorials</a></li>
+                <li><a href="#">Weaving Techniques</a></li>
+                <li><a href="#">Pattern Library</a></li>
+                <li><a href="#">Workshops</a></li>
+            </ul>
+        </div>
+        <div class="footer-section">
+            <h3>Support</h3>
+            <ul>
+                <li><a href="#">Help Center</a></li>
+                <li><a href="#">Contact Us</a></li>
+                <li><a href="#">FAQs</a></li>
+                <li><a href="#">Terms of Service</a></li>
+            </ul>
+        </div>
+        <div class="footer-section">
+            <h3>Connect</h3>
+            <ul>
+                <li><a href="#">Facebook</a></li>
+                <li><a href="#">Twitter</a></li>
+                <li><a href="#">Instagram</a></li>
+                <li><a href="#">LinkedIn</a></li>
+            </ul>
+        </div>
+    </div>
+    <div class="footer-bottom">
+        <p>&copy; 2024 Quantum Looms. All rights reserved.</p>
+    </div>
+</footer>
+
+<script>
+function playVideo() {
+    const video = document.getElementById('handloom-video');
+    const placeholder = document.querySelector('.video-placeholder');
+    const playButton = document.querySelector('.play-button');
+    
+    if (video.style.display === 'none') {
+        // Show video and hide placeholder
+        video.style.display = 'block';
+        placeholder.style.display = 'none';
+        
+        // Try to play the video
+        video.play().catch(function(error) {
+            console.log("Video play failed:", error);
+            // If video fails to play, show a message
+            placeholder.innerHTML = '<p>Video not available. Please check your internet connection.</p>';
+            placeholder.style.display = 'flex';
+            video.style.display = 'none';
+        });
+    }
+}
+
+// Add smooth scrolling for anchor links
+document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+    anchor.addEventListener('click', function (e) {
+        e.preventDefault();
+        const target = document.querySelector(this.getAttribute('href'));
+        if (target) {
+            target.scrollIntoView({
+                behavior: 'smooth',
+                block: 'start'
+            });
+        }
+    });
+});
+</script>
+</body>
+</html>

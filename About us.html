@@ -1,0 +1,644 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Quantum Loom-Empowering Handloom Weavers</title>
+     <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Amazon Ember', Arial, sans-serif;
+            background-color: #f3f3f3;
+            color: #333;
+        }
+
+        /* Header Styles */
+        .header {
+            background: linear-gradient(to bottom, #232f3e, #37475a);
+            color: white;
+            padding: 10px 0;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .header-top {
+            background: #131921;
+            padding: 8px 0;
+        }
+
+        .header-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 20px;
+        }
+
+        .logo {
+            color: #ff9900;
+            font-size: 28px;
+            font-weight: bold;
+            text-decoration: none;
+        }
+
+        .search-bar {
+            flex: 1;
+            max-width: 600px;
+            margin: 0 20px;
+            display: flex;
+        }
+
+        .search-input {
+            flex: 1;
+            padding: 12px;
+            border: none;
+            border-radius: 4px 0 0 4px;
+            font-size: 16px;
+        }
+
+        .search-button {
+            background: #ff9900;
+            border: none;
+            padding: 12px 20px;
+            border-radius: 0 4px 4px 0;
+            cursor: pointer;
+            color: #333;
+            font-weight: bold;
+        }
+
+        .search-button:hover {
+            background: #e68a00;
+        }
+
+        .header-right {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .header-link {
+            color: white;
+            text-decoration: none;
+            font-size: 14px;
+        }
+
+        .header-link:hover {
+            color: #ff9900;
+        }
+
+        .cart-icon {
+            position: relative;
+            color: white;
+            font-size: 20px;
+            text-decoration: none;
+        }
+
+        .cart-count {
+            position: absolute;
+            top: -8px;
+            right: -8px;
+            background: #ff9900;
+            color: #333;
+            border-radius: 50%;
+            width: 20px;
+            height: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 12px;
+            font-weight: bold;
+        }
+
+        /* Navigation */
+        .nav {
+            background: #232f3e;
+            padding: 8px 0;
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            align-items: center;
+            gap: 30px;
+            padding: 0 20px;
+        }
+
+        .nav-link {
+            color: white;
+            text-decoration: none;
+            font-size: 14px;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .nav-link:hover {
+            color: #ff9900;
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 80px 0;
+            text-align: center;
+        }
+
+        .hero-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .hero h1 {
+            font-size: 48px;
+            margin-bottom: 20px;
+        }
+
+        .hero p {
+            font-size: 20px;
+            margin-bottom: 30px;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        /* Main Content */
+        .main {
+            max-width: 1200px;
+            margin: 40px auto;
+            padding: 0 20px;
+        }
+
+        .section-title {
+            font-size: 28px;
+            margin-bottom: 30px;
+            color: #333;
+            text-align: center;
+        }
+
+        /* About Section */
+        .about-section {
+            background: white;
+            border-radius: 12px;
+            padding: 40px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            margin-bottom: 40px;
+            border: 1px solid #f0f0f0;
+        }
+
+        .about-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+            align-items: center;
+        }
+
+        .about-text h3 {
+            color: #333;
+            font-size: 24px;
+            margin-bottom: 20px;
+        }
+
+        .about-text p {
+            color: #666;
+            font-size: 16px;
+            line-height: 1.6;
+            margin-bottom: 20px;
+        }
+
+        .about-image {
+            text-align: center;
+        }
+
+        .about-image img {
+            width: 100%;
+            max-width: 400px;
+            height: auto;
+            border-radius: 12px;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+        }
+
+        /* Mission & Values */
+        .mission-values {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 30px;
+            margin-bottom: 40px;
+        }
+
+        .mission-card, .values-card {
+            background: white;
+            border-radius: 12px;
+            padding: 30px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            border: 1px solid #f0f0f0;
+        }
+
+        .mission-card h3, .values-card h3 {
+            color: #ff9900;
+            font-size: 22px;
+            margin-bottom: 20px;
+        }
+
+        .mission-card p, .values-card p {
+            color: #666;
+            font-size: 16px;
+            line-height: 1.6;
+            margin-bottom: 20px;
+        }
+
+        .values-list {
+            list-style: none;
+        }
+
+        .values-list li {
+            color: #666;
+            font-size: 16px;
+            line-height: 1.6;
+            margin-bottom: 10px;
+            padding-left: 20px;
+            position: relative;
+        }
+
+        .values-list li::before {
+            content: "✓";
+            color: #ff9900;
+            font-weight: bold;
+            position: absolute;
+            left: 0;
+        }
+
+        /* Team Section */
+        .team-section {
+            background: white;
+            border-radius: 12px;
+            padding: 40px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            margin-bottom: 40px;
+            border: 1px solid #f0f0f0;
+        }
+
+        .team-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            margin-top: 30px;
+        }
+
+        .team-member {
+            text-align: center;
+            padding: 20px;
+            border-radius: 12px;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .team-member:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+        }
+
+        .team-photo {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            margin: 0 auto 15px;
+            object-fit: cover;
+            border: 3px solid #ff9900;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        }
+
+        .team-name {
+            font-size: 18px;
+            font-weight: bold;
+            color: #333;
+            margin-bottom: 5px;
+        }
+
+        .team-role {
+            color: #ff9900;
+            font-size: 14px;
+            font-weight: 500;
+            margin-bottom: 10px;
+        }
+
+        .team-description {
+            color: #666;
+            font-size: 14px;
+            line-height: 1.5;
+        }
+
+        /* Stats Section */
+        .stats-section {
+            background: linear-gradient(135deg, #ff9900, #e68a00);
+            color: white;
+            padding: 60px 0;
+            margin: 40px 0;
+            border-radius: 12px;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 30px;
+            text-align: center;
+        }
+
+        .stat-item h3 {
+            font-size: 36px;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+
+        .stat-item p {
+            font-size: 16px;
+            opacity: 0.9;
+        }
+
+        /* Footer */
+        .footer {
+            background: #232f3e;
+            color: white;
+            padding: 40px 0 20px;
+            margin-top: 60px;
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+            padding: 0 20px;
+        }
+
+        .footer-section h3 {
+            margin-bottom: 20px;
+            color: #ff9900;
+        }
+
+        .footer-section ul {
+            list-style: none;
+        }
+
+        .footer-section ul li {
+            margin-bottom: 10px;
+        }
+
+        .footer-section ul li a {
+            color: #ccc;
+            text-decoration: none;
+        }
+
+        .footer-section ul li a:hover {
+            color: #ff9900;
+        }
+
+        .footer-bottom {
+            border-top: 1px solid #37475a;
+            margin-top: 30px;
+            padding-top: 20px;
+            text-align: center;
+            color: #ccc;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .header-container {
+                flex-direction: column;
+                gap: 15px;
+            }
+
+            .search-bar {
+                margin: 15px 0;
+                max-width: 100%;
+            }
+
+            .nav-container {
+                flex-wrap: wrap;
+                gap: 15px;
+            }
+
+            .hero h1 {
+                font-size: 32px;
+            }
+
+            .hero p {
+                font-size: 16px;
+            }
+
+            .about-content {
+                grid-template-columns: 1fr;
+                gap: 30px;
+            }
+
+            .mission-values {
+                grid-template-columns: 1fr;
+            }
+
+            .team-grid {
+                grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            }
+
+            .stats-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 480px) {
+            .about-section, .team-section {
+                padding: 20px;
+            }
+
+            .stats-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .footer-content {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
+        }
+  </style>
+</head>
+<body>
+<!-- Header -->
+<header class="header">
+    <div class="header-top">
+        <div class="header-container">
+            <a href="#" class="logo">Quantum Looms</a>
+            <div class="search-bar">
+                <input type="text" class="search-input" placeholder="Search for products and artisans...">
+                <button class="search-button">Search</button>
+            </div>
+            <div class="header-right">
+                <a href="#" class="header-link">Sign In</a>
+                <a href="#" class="header-link">Register</a>
+                <a href="#" class="cart-icon">🛒<span class="cart-count">0</span></a>
+            </div>
+        </div>
+    </div>
+    <nav class="nav">
+        <div class="nav-container">
+            <a href="#" class="nav-link">🏠 Home</a>
+            <a href="#" class="nav-link">👨‍🎨 Artists</a>
+            <a href="#" class="nav-link">🛍️ Products</a>
+            <a href="#" class="nav-link">🎥 Videos</a>
+            <a href="#" class="nav-link">📞 Contact</a>
+        </div>
+    </nav>
+</header>
+
+<!-- Hero Section -->
+<section class="hero">
+    <div class="hero-content">
+        <h1>About Quantum Looms</h1>
+        <p>We are passionate about preserving and promoting the ancient art of handloom weaving, connecting skilled artisans with customers worldwide while supporting sustainable and ethical textile production.</p>
+    </div>
+</section>
+
+<!-- Main Content -->
+<main class="main">
+    <!-- About Section -->
+    <section class="about-section">
+        <h2 class="section-title">Our Story</h2>
+        <div class="about-content">
+            <div class="about-text">
+                <h3>Preserving Traditional Craftsmanship</h3>
+                <p>Quantum Looms was founded with a simple yet powerful mission: to preserve the ancient art of handloom weaving and support the skilled artisans who keep this tradition alive. Our journey began in the heart of India's textile heritage, where we discovered the incredible skill and dedication of handloom weavers.</p>
+                <p>Today, we serve as a bridge between these talented artisans and customers worldwide who appreciate the beauty, quality, and cultural significance of handcrafted textiles. Every piece tells a story of tradition, skill, and human connection.</p>
+            </div>
+            <div class="about-image">
+                <img src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80" alt="Handloom Weaving">
+            </div>
+        </div>
+    </section>
+
+    <!-- Mission & Values -->
+    <section class="mission-values">
+        <div class="mission-card">
+            <h3>Our Mission</h3>
+            <p>To preserve and promote traditional handloom weaving techniques while providing sustainable livelihoods for skilled artisans. We believe in creating a world where ancient craftsmanship thrives alongside modern innovation.</p>
+            <p>Through our platform, we connect artisans directly with customers, ensuring fair compensation and preserving cultural heritage for future generations.</p>
+        </div>
+        
+        <div class="values-card">
+            <h3>Our Values</h3>
+            <ul class="values-list">
+                <li>Preservation of traditional craftsmanship</li>
+                <li>Fair trade and ethical practices</li>
+                <li>Sustainable and eco-friendly production</li>
+                <li>Cultural heritage conservation</li>
+                <li>Quality and authenticity</li>
+                <li>Community empowerment</li>
+            </ul>
+        </div>
+    </section>
+
+    <!-- Stats Section -->
+    <section class="stats-section">
+        <div class="stats-grid">
+            <div class="stat-item">
+                <h3>500+</h3>
+                <p>Skilled Artisans</p>
+            </div>
+            <div class="stat-item">
+                <h3>50+</h3>
+                <p>Traditional Techniques</p>
+            </div>
+            <div class="stat-item">
+                <h3>10,000+</h3>
+                <p>Happy Customers</p>
+            </div>
+            <div class="stat-item">
+                <h3>25+</h3>
+                <p>Years of Experience</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Team Section -->
+    <section class="team-section">
+        <h2 class="section-title">Meet Our Team</h2>
+        <div class="team-grid">
+            
+            
+            <div class="team-member">
+                <img src="https://images.unsplash.com/photo-1494790108755-2616b612b786?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=300&q=80" alt="Team Member" class="team-photo">
+                <h4 class="team-name">PALLU</h4>
+                <p class="team-role">Head of Operations</p>
+                <p class="team-description">Expert in supply chain management and artisan relations, ensuring quality and fair practices.</p>
+            </div>
+            
+            <div class="team-member">
+                <img src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=300&q=80" alt="Team Member" class="team-photo">
+                <h4 class="team-name">MINI</h4>
+                <p class="team-role">Creative Director</p>
+                <p class="team-description">Design expert who bridges traditional patterns with contemporary aesthetics.</p>
+            </div>
+            
+            <div class="team-member">
+                <img src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=300&q=80" alt="Team Member" class="team-photo">
+                <h4 class="team-name">HARSHINI</h4>
+                <p class="team-role">Artisan Relations</p>
+                <p class="team-description">Works directly with our artisan community to ensure their needs and traditions are respected.</p>
+            </div>
+        </div>
+    </section>
+</main>
+
+<!-- Footer -->
+<footer class="footer">
+    <div class="footer-content">
+        <div class="footer-section">
+            <h3>About Quantum Looms</h3>
+            <ul>
+                <li><a href="#">Our Story</a></li>
+                <li><a href="#">Mission & Values</a></li>
+                <li><a href="#">Team</a></li>
+                <li><a href="#">Careers</a></li>
+            </ul>
+        </div>
+        <div class="footer-section">
+            <h3>Artisans</h3>
+            <ul>
+                <li><a href="#">Meet Our Artisans</a></li>
+                <li><a href="#">Artisan Stories</a></li>
+                <li><a href="#">Join Our Network</a></li>
+                <li><a href="#">Training Programs</a></li>
+            </ul>
+        </div>
+        <div class="footer-section">
+            <h3>Support</h3>
+            <ul>
+                <li><a href="#">Help Center</a></li>
+                <li><a href="#">Contact Us</a></li>
+                <li><a href="#">FAQs</a></li>
+                <li><a href="#">Terms of Service</a></li>
+            </ul>
+        </div>
+        <div class="footer-section">
+            <h3>Connect</h3>
+            <ul>
+                <li><a href="#">Facebook</a></li>
+                <li><a href="#">Twitter</a></li>
+                <li><a href="#">Instagram</a></li>
+                <li><a href="#">LinkedIn</a></li>
+            </ul>
+        </div>
+    </div>
+    <div class="footer-bottom">
+        <p>&copy; 2024 Quantum Looms. All rights reserved.</p>
+    </div>
+</footer>
+</body>
+</html>
+
